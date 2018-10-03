@@ -1745,16 +1745,9 @@ The styles @code{DEFAULT} and @code{OWN} are initially identical.  If
 you wish to edit some of the default values, set
 @code{ess-default-style} to @code{'OWN} and change
 @code{ess-own-style-list}.
-@xref{Customization}, for convenient ways to set both these variables.
 
-If you prefer not to use the customization facility, you can change individual
-indentation variables within a hook, for example:
-
-@example
-(defun myindent-ess-hook ()
-  (setq ess-indent-level 4))
-(add-hook 'ess-mode-hook 'myindent-ess-hook)
-@end example
+If you prefer not to use the Emacs easy customization interface, you can change individual
+indentation variables within a hook. @xref{Customization}, for convenient ways to set both these variables.
 
 In the rare case that you'd like to add an entire new indentation style
 of your own, copy the definition of @code{ess-own-style-list} to a new
@@ -3369,17 +3362,51 @@ ESS.
 @appendix Customizing ESS
 @cindex customization
 
-ESS can be easily customized to your taste simply by including the
-appropriate lines in your Emacs configuration file.  There are numerous
-variables which affect the behavior of ESS in certain situations which
-can be modified to your liking.  Keybindings may be set or changed to
-your preferences, and for per-buffer customizations hooks are also
-available.
+There are numerous variables which affect the behavior of ESS in
+certain situations which can be modified to your liking. These can be
+customized either by using the Emacs Easy Customisation Interface,
+major mode GUI menu, or by including the appropriate lines in your
+Emacs configuration file.
 
-Most of these variables can be viewed and set using the Custom facility
-within Emacs.  Type @kbd{M-x customize-group RET ess RET} to see all the
-ESS variables that can be customized.  Variables are grouped by subject
-to make it easy to find related variables.
+## Easy Customisation Interface
+
+Most of the variables affecting ESS behavior can be viewed and set
+using the Easy Customization facility. Type @kbd{M-x customize-group
+RET ess RET} to see all the ESS variables that can be customized this
+way. Variables are grouped by subject to make it easy to find related
+variables. Configuration here can be saved permanently using the
+'Apply and Save' button.
+
+## Major Mode GUI Menu
+
+A small subset of variables relating to toggling developer features
+and font lock highlighting preferences can be found within the major
+mode GUI menu. In some cases the settings may be able to saved to the
+Easy Customization file using a 'Save to custom' sub-menu option, if
+it appears.
+
+## Configuration file
+
+Using an Emacs configuration file allows full customization off ESS
+behavior and keybindings, configurable using
+customization hooks.
+
+### Configuring Behavior
+
+The ess-custom.el file contains the default initialization of ESS
+variables and may be useful for identifying the data structures of
+variables to be customized.
+
+For example: to set an indent preference applied to all ESS buffers,
+attach it as a function to the ess-mode-hook:
+
+@example
+(defun myindent-ess-hook ()
+  (setq ess-indent-level 4))
+(add-hook 'ess-mode-hook 'myindent-ess-hook)
+@end example
+
+### Configuring Keybindings
 
 @node Indices
 @unnumbered Indices
